@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Form = ({inputText, setInputText, todos, setTodos}) => {
+const Form = ({inputText, setInputText, todos, setTodos, setStatus, status, setFilteredTodos}) => {
 
   const inputTextHandler = (e) => {
     console.log(e.target.value);
-    setInputText(e.target.value); //sets inputText to the value of entered by the user
+    setInputText(e.target.value); //sets inputText to the value which is entered by the user
   }
 
   const submitTodohandler = (e) => {
@@ -15,6 +15,10 @@ const Form = ({inputText, setInputText, todos, setTodos}) => {
     setInputText(""); 
   }
 
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
+  }
+
     return(
         <form>
         <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
@@ -22,7 +26,7 @@ const Form = ({inputText, setInputText, todos, setTodos}) => {
           <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
-          <select name="todos" className="filter-todo">
+          <select onChange={statusHandler} name="todos" className="filter-todo">
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="uncompleted">Uncompleted</option>
